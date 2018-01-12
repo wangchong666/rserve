@@ -1,5 +1,11 @@
 # vim:set ft=dockerfile:
 FROM alpine:edge
+LABEL maintainer="gebele@in-silico.ch"
+LABEL io.openrisknet.tags rserve
+LABEL io.openrisknet.non-scalable true
+LABEL io.openshift.expose-services 6311
+LABEL io.openrisknet.min-memory 2Gi
+LABEL io.openrisknet.min-cpu 4
 RUN apk add --update musl-utils build-base R R-dev cairo-dev grep
 RUN R -e 'install.packages("caret", repos="https://stat.ethz.ch/CRAN/",dependencies=TRUE)'
 RUN R -e 'install.packages("pls", repos="https://stat.ethz.ch/CRAN/",dependencies=TRUE)'
