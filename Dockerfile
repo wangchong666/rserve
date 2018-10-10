@@ -9,4 +9,4 @@ RUN install2.r --error \
 EXPOSE 6311 8787
 #ENTRYPOINT R -e "Rserve::run.Rserve(remote=TRUE)"
 #CMD ["R", "CMD", "Rserve"]
-CMD /init&&R -e "Rserve::run.Rserve(remote=TRUE)" 
+#CMD /init&&R -e "Rserve::run.Rserve(remote=TRUE)" 
