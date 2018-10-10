@@ -1,4 +1,4 @@
-FROM alpine:edge
+FROM alpine
 
 RUN apk add --update musl-utils build-base R R-dev cairo-dev grep
 RUN R -e 'install.packages("caret", repos="https://stat.ethz.ch/CRAN/",dependencies=TRUE)'
