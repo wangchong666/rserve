@@ -10,7 +10,7 @@ RUN apt-get update \
   
 RUN install2.r --error \
     -r "https://cran.rstudio.com" \
-    Rserve && \
+    Rserve data.table dplyr lubridate stringr forecast tidyr RJDBC && \
     rm -rf /tmp/downloaded_packages/ /tmp/*.rds
 
 
