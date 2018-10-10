@@ -1,5 +1,6 @@
 FROM rocker/rstudio-stable:latest
-
+RUN apt-get update \
+  && apt-get install -y openjdk-8-jdk
 RUN install2.r --error \
     -r "https://cran.rstudio.com" \
     Rserve && \
