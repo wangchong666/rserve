@@ -1,17 +1,12 @@
-FROM alpine
+FROM rocker/rstudio-stable:latest
 
-RUN apk add --update musl-utils build-base R R-dev cairo-dev grep
-RUN R -e 'install.packages("caret", repos="https://stat.ethz.ch/CRAN/",dependencies=TRUE)'
-RUN R -e 'install.packages("pls", repos="https://stat.ethz.ch/CRAN/",dependencies=TRUE)'
-RUN R -e 'install.packages("randomForest", repos="https://stat.ethz.ch/CRAN/",dependencies=TRUE)'
-RUN R -e 'install.packages("gridExtra", repos="https://stat.ethz.ch/CRAN/",dependencies=TRUE)'
-RUN R -e 'install.packages("doMC", repos="https://stat.ethz.ch/CRAN/",dependencies=TRUE)'
-RUN R -e 'install.packages("Rserve", repos="https://stat.ethz.ch/CRAN/",dependencies=TRUE)'
-RUN R -e 'install.packages("stringi", repos="https://stat.ethz.ch/CRAN/",dependencies=TRUE)'
-RUN R -e 'install.packages("iterators", repos="https://stat.ethz.ch/CRAN/",dependencies=TRUE)'
-RUN R -e 'install.packages("foreach", repos="https://stat.ethz.ch/CRAN/",dependencies=TRUE)'
-RUN R -e 'install.packages("ggplot2", repos="https://stat.ethz.ch/CRAN/",dependencies=TRUE)'
+RUN install2.r --error \
+    -r "https://cran.rstudio.com" \
+    Rserve && \
+    rm -rf /tmp/downloaded_packages/ /tmp/*.rds
 
-EXPOSE 6311
+
+EXPOSE 6311 8787
 #ENTRYPOINT R -e "Rserve::run.Rserve(remote=TRUE)"
-CMD ["R", "CMD", "Rserve"]
+#CMD ["R", "CMD", "Rserve"]
+CMD /init&&R -e "Rserve::run.Rserve(remote=TRUE)" 
