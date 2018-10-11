@@ -8,9 +8,9 @@ RUN apt-get update \
   && ln -s /usr/lib/x86_64-linux-gnu/libicuuc.so.57 /lib/x86_64-linux-gnu/libicuuc.so \
   && ln -s /usr/lib/x86_64-linux-gnu/libicui18n.so.57 /lib/x86_64-linux-gnu/libicui18n.so
   
-RUN install2.r --error \
+RUN install.packages('Rserve',,'http://www.rforge.net/')&&install2.r --error \
     -r "https://cran.rstudio.com" \
-    Rserve data.table dplyr lubridate stringr forecast tidyr RJDBC && \
+    data.table dplyr lubridate stringr forecast tidyr RJDBC && \
     rm -rf /tmp/downloaded_packages/ /tmp/*.rds
 
 COPY init /init
