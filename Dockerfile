@@ -15,6 +15,10 @@ RUN install2.r --error \
 
 COPY init /init
 EXPOSE 6311 8787
+
+ENTRYPOINT bash
+
+CMD /init
 #ENTRYPOINT R -e "Rserve::run.Rserve(remote=TRUE)"
 #CMD ["R", "CMD", "Rserve"]
 #CMD /init&&R -e "Rserve::run.Rserve(remote=TRUE)" 
