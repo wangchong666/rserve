@@ -13,7 +13,7 @@ RUN install2.r --error \
     Rserve data.table dplyr lubridate stringr forecast tidyr RJDBC && \
     rm -rf /tmp/downloaded_packages/ /tmp/*.rds
 
-
+COPY init /init
 EXPOSE 6311 8787
 #ENTRYPOINT R -e "Rserve::run.Rserve(remote=TRUE)"
 #CMD ["R", "CMD", "Rserve"]
