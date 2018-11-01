@@ -8,9 +8,14 @@ RUN apt-get update \
   && ln -s /usr/lib/x86_64-linux-gnu/libicuuc.so.57 /lib/x86_64-linux-gnu/libicuuc.so \
   && ln -s /usr/lib/x86_64-linux-gnu/libicui18n.so.57 /lib/x86_64-linux-gnu/libicui18n.so
   
-RUN R -e "install.packages('Rserve',,'http://www.rforge.net/')"&&install2.r --error \
-    -r "https://cran.rstudio.com" \
-    data.table dplyr lubridate stringr forecast tidyr RJDBC && \
+RUN R -e "install.packages('Rserve',,'http://www.rforge.net/')"&& \
+    R -e "install.packages('data.table','1.11.8','http://www.rforge.net/')"&& \
+    R -e "install.packages('dplyr','0.7.7','http://www.rforge.net/')"&& \
+    R -e "install.packages('lubridate','1.5.0','http://www.rforge.net/')"&& \
+    R -e "install.packages('stringr','1.0.0','http://www.rforge.net/')"&& \
+    R -e "install.packages('forecast','8.3','http://www.rforge.net/')"&& \
+    R -e "install.packages('tidyr','0.4.1','http://www.rforge.net/')"&& \
+    R -e "install.packages('RJDBC','0.2-4','http://www.rforge.net/')"&& \
     rm -rf /tmp/downloaded_packages/ /tmp/*.rds
 
 COPY init /init
