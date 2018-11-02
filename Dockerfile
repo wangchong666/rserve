@@ -9,7 +9,7 @@ RUN apt-get update \
   && ln -s /usr/lib/x86_64-linux-gnu/libicui18n.so.57 /lib/x86_64-linux-gnu/libicui18n.so
 
 COPY install.R /install.R 
-RUN Rscipt /install.R && rm -rf /tmp/* 
+RUN Rscript /install.R && rm -rf /tmp/* 
 
 COPY init /init
 EXPOSE 6311 8787
