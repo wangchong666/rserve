@@ -7,9 +7,11 @@ RUN apt-get update \
   && ln -s /lib/x86_64-linux-gnu/liblzma.so.5.2.2 /lib/x86_64-linux-gnu/liblzma.so \
   && ln -s /usr/lib/x86_64-linux-gnu/libicuuc.so.57 /lib/x86_64-linux-gnu/libicuuc.so \
   && ln -s /usr/lib/x86_64-linux-gnu/libicui18n.so.57 /lib/x86_64-linux-gnu/libicui18n.so
-
-COPY install.R /install.R 
-RUN Rscript /install.R && rm -rf /tmp/* 
+  
+RUN R -e "install.packages('Rserve',,'http://www.rforge.net/')"&&install2.r --error \
+    -r "https://cran.rstudio.com" \
+    data.table dplyr lubridate stringr forecast tidyr RJDBC && \
+    rm -rf /tmp/downloaded_packages/ /tmp/*.rds
 
 COPY init /init
 EXPOSE 6311 8787
