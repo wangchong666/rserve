@@ -1,4 +1,4 @@
-FROM rocker/rstudio-stable:latest
+FROM rocker/r-base:latest
 RUN apt-get update \
   && apt-get install -y openjdk-8-jdk \
   && ln -s /lib/x86_64-linux-gnu/libpcre.so.3.13.3 /lib/x86_64-linux-gnu/libpcre.so \
