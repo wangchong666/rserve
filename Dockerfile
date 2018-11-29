@@ -1,6 +1,6 @@
 FROM rocker/rstudio-stable:latest
 RUN apt-get update \
-  && apt-get install -y openjdk-8-jdk  zlib-devel\
+  && apt-get install -y openjdk-8-jdk  zlib1g-dev \
   && ln -s /lib/x86_64-linux-gnu/libpcre.so.3.13.3 /lib/x86_64-linux-gnu/libpcre.so \
   && ln -s /lib/x86_64-linux-gnu/libz.so.1 /lib/x86_64-linux-gnu/libz.so \
   && ln -s /lib/x86_64-linux-gnu/libbz2.so.1 /lib/x86_64-linux-gnu/libbz2.so \
