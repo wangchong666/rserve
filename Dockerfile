@@ -1,6 +1,6 @@
 FROM rocker/rstudio-stable:latest
 RUN apt-get update \
-  && apt-get install -y openjdk-8-jdk  zlib1g-dev libglpk-dev \
+  && apt-get install -y openjdk-8-jdk  zlib1g-dev libglpk-dev protobuf-compiler libprotobuf-dev libprotoc-dev  \
   && ln -s /lib/x86_64-linux-gnu/libpcre.so.3.13.3 /lib/x86_64-linux-gnu/libpcre.so \
   && ln -s /lib/x86_64-linux-gnu/libz.so.1 /lib/x86_64-linux-gnu/libz.so \
   && ln -s /lib/x86_64-linux-gnu/libbz2.so.1 /lib/x86_64-linux-gnu/libbz2.so \
@@ -10,7 +10,7 @@ RUN apt-get update \
   
 RUN R -e "install.packages('Rserve',,'http://www.rforge.net/')"&&install2.r --error \
     -r "https://cran.rstudio.com" \
-    data.table dplyr lubridate stringr forecast tidyr RJDBC devtools Rglpk && \
+    data.table dplyr lubridate stringr forecast tidyr RJDBC devtools Rglpk RProtoBuf && \
     rm -rf /tmp/downloaded_packages/ /tmp/*.rds
 
 COPY init /init
