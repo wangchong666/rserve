@@ -10,7 +10,7 @@ RUN apt-get update \
   
 RUN R -e "install.packages('Rserve',,'http://www.rforge.net/')"&&install2.r --error \
     -r "https://cran.rstudio.com" \
-    data.table dplyr lubridate stringr forecast tidyr RJDBC Rglpk RProtoBuf && \
+    data.table dplyr lubridate stringr forecast tidyr RJDBC Rglpk RProtoBuf iterators jsonlite R6 foreach httr && \
     rm -rf /tmp/downloaded_packages/ /tmp/*.rds
 
 COPY init /init
